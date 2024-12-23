@@ -63,12 +63,9 @@ export default function Header() {
               onChange={handleSearch}
             />
             <BsSearch
-              // onClick={() => {
-              //   if (!focused) {
-              //     setFocused(true);
-              //   }
-              // }}
-              className={`absolute ${focused ? "left-5" : "right-5"} top-1/2 -translate-y-1/2 text-gray-400`}
+              className={`absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 transition-all duration-300 ${
+                focused ? "translate-x-[-200px]" : "translate-x-0"
+              }`}
             />
           </div>
           <div className="w-10">

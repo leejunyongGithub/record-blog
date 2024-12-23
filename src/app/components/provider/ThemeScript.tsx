@@ -19,20 +19,23 @@ function code() {
     window.__onThemeChange(newTheme);
   }
 
+  // eslint-disable-next-line
   var preferredTheme;
 
   try {
     preferredTheme = localStorage.getItem("theme") as Theme;
+    // eslint-disable-next-line
   } catch (err) {}
 
   window.__setPreferredTheme = function (newTheme: Theme) {
     setTheme(newTheme);
     try {
       localStorage.setItem("theme", newTheme);
+      // eslint-disable-next-line
     } catch (err) {}
   };
 
-  
+  // eslint-disable-next-line
   var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
   darkQuery.addEventListener("change", function (e) {
