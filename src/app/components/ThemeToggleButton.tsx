@@ -20,7 +20,7 @@ export default function ThemeToggleButton() {
 
   return (
     <button
-      className="hover:bg-gray-400/10 dark:hover:bg-gray-500/30 rounded-md p-2 transition-all duration-300"
+      className="hover:bg-gray-400/10 dark:hover:bg-gray-500/30 rounded-md p-2 transition-all duration-300 opacity-0 animate-fadeIn"
       onClick={toggleTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
