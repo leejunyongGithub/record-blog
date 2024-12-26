@@ -1,6 +1,6 @@
 import React from "react";
-import Title from "@/app/components/Title";
-import Description from "@/app/components/Description";
+import Title from "@/app/_components/Title";
+import Description from "@/app/_components/Description";
 
 export default function page() {
   return (

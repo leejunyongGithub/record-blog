@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import Title from "../components/Title";
-import Description from "../components/Description";
+import Title from "../_components/Title";
+import Description from "../_components/Description";
 
 export const metadata: Metadata = {
   title: "Blog",

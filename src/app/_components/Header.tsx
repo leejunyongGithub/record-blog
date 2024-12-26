@@ -3,7 +3,7 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 const ThemeToggleButton = dynamic(() => import("./ThemeToggleButton"), {
   ssr: false,
@@ -28,6 +28,20 @@ export default function Header() {
   const pathname = usePathname();
   const isCurrentPath = (href: string) => (pathname === href ? "text-white" : "text-gray-400");
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setFocused(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const [focused, setFocused] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -35,8 +49,13 @@ export default function Header() {
     setSearch(e.target.value);
   };
 
+  const handleFocus = () => {
+    setFocused(true);
+    document.getElementById("search")?.focus();
+  };
+
   return (
-    <header>
+    <header className="">
       <nav className="flex justify-between items-center p-4">
         <ul className="flex gap-4">
           {navItems.map((item) => (
@@ -50,17 +69,19 @@ export default function Header() {
           ))}
         </ul>
         <div className="flex h-10 items-center">
-          <div className="flex items-center relative">
+          <div className="flex items-center relative" onClick={handleFocus}>
             <input
+              id="search"
               type="text"
               placeholder={focused ? "검색어를 입력해주세요." : ""}
               className={`h-10 rounded-md bg-gray-200 dark:bg-gray-800 ${
                 focused ? "pl-12 pr-6" : "pr-10"
-              } focus:outline-none mr-2 transition-all duration-300 ${focused ? "w-60" : "w-10"}`}
-              onFocus={() => setFocused(true)}
+              } focus:outline-none mr-2 transition-all duration-300 ${focused ? "w-60" : "w-10"} outline-none`}
+              onFocus={handleFocus}
               onBlur={() => setFocused(false)}
               value={search}
               onChange={handleSearch}
+              autoComplete="off"
             />
             <BsSearch
               className={`absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 transition-all duration-300 ${

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Content from "../components/Content";
-import "@/app/globals.css";
-import ThemeScript from "../components/provider/ThemeScript";
+import Footer from "../_components/Footer";
+import Header from "../_components/Header";
+import Content from "../_components/Content";
+import "@/app/styles/globals.css";
+import ThemeScript from "../_components/provider/ThemeScript";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,10 +20,12 @@ export default function RootLayout({
       <head>
         <ThemeScript />
       </head>
-      <body className="max-auto max-w-3xl px-6 lg:max-w-6xl lg:px-8 font-sans">
-        <Header />
-        <Content>{children}</Content>
-        <Footer />
+      <body className="px-6 lg:px-8 font-sans flex justify-center">
+        <div className="max-w-[900px] w-full">
+          <Header />
+          <Content>{children}</Content>
+          <Footer />
+        </div>
       </body>
     </html>
   );
